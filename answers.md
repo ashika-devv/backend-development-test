@@ -29,25 +29,65 @@ In a production environment, I would store the balances in a relational database
 - Containerize the application using Docker.
 
 Overall, these improvements would make the application more scalable, secure, maintainable, and suitable for production use.
+
 ---
 
 ## Task 3
 
 ### Question 1
 
-<Answer>
+The current database design works but has some areas for improvement.
+
+### Issues
+
+- The `players` table stores both `balance` and `balance_id`, which introduces redundancy.
+- The `transaction` table contains separate `credit` and `debit` columns. A single `amount` column with a transaction type (credit/debit) would simplify the design.
+- Storing the current balance separately can lead to inconsistencies if transactions are not updated correctly.
+- The schema does not show constraints such as NOT NULL, UNIQUE, or foreign key cascade rules.
+- Additional indexes may be required on frequently queried columns such as `players_id`, `games_id`, and `transaction_date`.
+
+### Improvements
+
+- Remove redundant balance information and maintain balances consistently.
+- Use a single transaction amount column with a transaction type.
+- Add proper constraints and indexes.
+- Normalize the schema where necessary while keeping frequently accessed data optimized.
 
 ### Question 2
 
-<SQL Query>
+```sql
+SELECT
+    g.name,
+    COUNT(t.id) AS total_bets
+FROM games g
+JOIN transaction t
+    ON g.id = t.games_id
+GROUP BY g.id, g.name
+ORDER BY total_bets DESC
+LIMIT 3;
+```
 
 ### Question 3
 
-<Answer>
+To improve performance, I would:
+
+- Create indexes on frequently queried columns such as `games_id`.
+- Cache the query results using Redis if the data does not change frequently.
+- Use materialized views for precomputed statistics if appropriate.
+- Optimize the SQL query using PostgreSQL's execution plan.
 
 ### Question 4
 
-<Answer>
+Some important considerations include:
+
+- Database indexing.
+- Query optimization.
+- Backup and disaster recovery.
+- Data consistency and transactions.
+- Scalability through partitioning or replication.
+- Security, authentication, and access control.
+- Monitoring database performance.
+- High availability and fault tolerance.
 
 ---
 
