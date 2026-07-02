@@ -23,13 +23,13 @@ backend-development-test/
 │   └── server.js
 │
 ├── task1/
-│   ├── non-recursive.js
+│   ├── iterative.js
 │   └── recursive.js
 │
 ├── answers.md
 ├── package.json
 ├── README.md
-└── .gitignore
+
 ```
 
 ## Installation
@@ -100,7 +100,7 @@ POST /spin/A
 
 The JavaScript solutions are available in the `task1` folder:
 
-- `non-recursive.js`
+- `iterative.js`
 - `recursive.js`
 
 ## Task 2
@@ -157,4 +157,4 @@ POST http://localhost:3000/spin/A
 
 ## Author
 
-Ashika
+Ashika M G
