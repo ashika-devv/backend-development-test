@@ -91,4 +91,3 @@ Some important considerations include:
 
 ---
 
-## Task 1
